@@ -79,15 +79,7 @@ input[type="text"]::placeholder {
     z-index: 0;
 }
 
-/* 當日期輸入框有值時隱藏提示文字 */
-#date:valid + .date-placeholder {
-    display: none;
-}
 
-/* 當日期輸入框獲得焦點時隱藏提示文字 */
-#date:focus + .date-placeholder {
-    display: none;
-}
 
 button {
     background: #0083b0;
