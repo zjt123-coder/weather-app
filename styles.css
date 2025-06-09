@@ -7,12 +7,13 @@
 }
 
 :root {
-    --primary-color: #0083b0;
-    --secondary-color: #00b4db;
-    --text-color: #333;
-    --bg-color: #fff;
-    --error-color: #ff4444;
-    --success-color: #00C851;
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --error-color: #e74c3c;
+    --text-color: #2c3e50;
+    --bg-color: #f8f9fa;
+    --border-radius: 12px;
+    --spacing: 16px;
 }
 
 html {
@@ -26,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: var(--spacing);
     color: var(--text-color);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -35,8 +36,8 @@ body {
 
 .container {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: var(--border-radius);
+    padding: calc(var(--spacing) * 1.5);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
@@ -51,10 +52,14 @@ header {
 }
 
 h1 {
-    color: #2c3e50;
+    color: var(--text-color);
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
+    margin-bottom: calc(var(--spacing) * 1.5);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .search-box {
@@ -65,33 +70,35 @@ h1 {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing);
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #34495e;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
 input {
     width: 100%;
-    padding: 12px;
+    padding: 0.8rem 1rem;
     border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    font-size: clamp(0.9rem, 3vw, 1rem);
     transition: all 0.3s ease;
+    background: var(--bg-color);
 }
 
 input:focus {
-    border-color: #3498db;
+    border-color: var(--primary-color);
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 input.error {
-    border-color: #e74c3c;
+    border-color: var(--error-color);
     animation: shake 0.5s ease-in-out;
 }
 
@@ -103,22 +110,24 @@ input.error {
 
 .search-btn {
     width: 100%;
-    padding: 12px;
-    background: #3498db;
+    padding: 0.8rem;
+    background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
+    margin-top: calc(var(--spacing) * 1.5);
 }
 
 .search-btn:hover {
-    background: #2980b9;
+    background: var(--secondary-color);
     transform: translateY(-2px);
 }
 
@@ -173,47 +182,50 @@ footer {
     }
 }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
+@media (max-width: 480px) {
+    :root {
+        --spacing: 12px;
     }
 
-    h1 {
-        font-size: 1.5em;
+    .container {
+        padding: var(--spacing);
     }
 
     input {
-        padding: 10px;
-        width：100%;
+        padding: 0.7rem 0.8rem;
     }
 
     .search-btn {
-        padding: 10px;
+        padding: 0.7rem;
     }
 
     .weather-info {
-        padding: 15px;
+        padding: var(--spacing);
+    }
+
+    .weather-info p {
+        margin: 0.6rem 0;
     }
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: #fff;
-        --bg-color: #1a1a1a;
+        --text-color: #ecf0f1;
+        --bg-color: #2c3e50;
     }
 
     .container {
-        background: rgba(26, 26, 26, 0.95);
+        background: rgba(44, 62, 80, 0.95);
     }
 
     input {
-        background: #2d2d2d;
-        border-color: #404040;
-        color: #fff;
+        background: #34495e;
+        color: var(--text-color);
+        border-color: #4a6278;
     }
 
     .weather-info {
-        background: #2d2d2d;
+        background: #34495e;
     }
 
     footer {
@@ -243,43 +255,59 @@ footer {
 
 .error-message {
     color: var(--error-color);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #fde8e8;
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+.error-message i {
+    color: var(--error-color);
 }
 
 .loading {
-    width: 20px;
-    height: 20px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #3498db;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    to { transform: rotate(360deg); }
 }
 
 .note {
     margin-top: 1rem;
     padding: 0.8rem;
-    background: rgba(0, 131, 176, 0.1);
-    border-radius: 8px;
-    color: var(--primary-color);
-    font-size: 0.9rem;
+    background: #e8f4f8;
+    border-radius: calc(var(--border-radius) / 2);
+    color: var(--secondary-color);
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.note i {
-    font-size: 1.1rem;
-}
-
 /* 深色模式下的提示信息樣式 */
 @media (prefers-color-scheme: dark) {
     .note {
-        background: rgba(0, 131, 176, 0.2);
+        background: #2c3e50;
+    }
+}
+
+/* 觸控優化 */
+@media (hover: none) {
+    .search-btn:hover {
+        transform: none;
+    }
+
+    input:focus {
+        box-shadow: none;
     }
 }
