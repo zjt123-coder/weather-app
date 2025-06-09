@@ -55,38 +55,38 @@ input[type="text"]::placeholder {
 }
 
 /* 日期輸入框樣式 */
-#dateDisplay {
+#date {
     position: relative;
-    color: #333;
-    background: transparent;
     z-index: 1;
+    background: transparent;
+}
+
+/* 日期輸入框樣式 */
+#date::-webkit-calendar-picker-indicator {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
 }
 
 /* 日期標籤樣式 */
-.date-label {
+.date-placeholder {
     position: absolute;
     left: 0.8rem;
     top: 50%;
     transform: translateY(-50%);
     color: #999;
     pointer-events: none;
-    transition: all 0.3s ease;
     z-index: 0;
 }
 
-/* 當日期輸入框有值時隱藏標籤 */
-#dateDisplay:valid + .date-label,
-#dateDisplay:focus + .date-label {
-    opacity: 0;
-    transform: translateY(-50%) translateX(-10px);
+/* 當日期輸入框有值時隱藏提示文字 */
+#date:valid + .date-placeholder {
+    display: none;
 }
 
-/* 日期選擇器圖標樣式 */
-#dateDisplay::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    padding: 5px;
-    position: relative;
-    z-index: 2;
+/* 當日期輸入框獲得焦點時隱藏提示文字 */
+#date:focus + .date-placeholder {
+    display: none;
 }
 
 button {
@@ -140,7 +140,7 @@ button:hover {
         font-size: 16px; /* 防止 iOS 自動縮放 */
     }
     
-    .date-label {
+    .date-placeholder {
         font-size: 16px;
     }
 } 
