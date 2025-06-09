@@ -41,7 +41,8 @@ input {
     border-radius: 5px;
     font-size: 1rem;
     width: 100%;
-    color:#ddd;
+    color:black;
+    text-align: left;
 }
 
 /* 普通輸入框的 placeholder 樣式 */
