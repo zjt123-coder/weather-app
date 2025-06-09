@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天氣查詢</title>
     <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="一個簡單的天氣查詢應用">
 </head>
 <body>
     <div class="container">
         <h1>天氣查詢</h1>
         <div class="search-box">
             <input type="text" id="city" placeholder="請輸入城市名稱">
-            <div class="date-input-wrapper">
-                <input type="date" id="date" required value=" ">
-                
-            </div>
+            <input type="date" id="date">
             <button onclick="getWeather()">查詢天氣</button>
         </div>
-        <div class="weather-info" id="weatherInfo">
-            <!-- 天氣資訊將在這裡顯示 -->
+        <div id="weather-info" class="weather-info">
+            <!-- 天氣信息將在這裡顯示 -->
         </div>
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
