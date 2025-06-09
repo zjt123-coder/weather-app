@@ -42,6 +42,7 @@ input {
     font-size: 1rem;
     width: 100%;
 }
+.date-input-wrapper{width:100%;}
 
 /* 普通輸入框的 placeholder 樣式 */
 input[type="text"]::placeholder {
