@@ -12,8 +12,8 @@
         <div class="search-box">
             <input type="text" id="city" placeholder="請輸入城市名稱">
             <div class="date-input-wrapper">
-                <input type="date" id="date" placeholder="年 / 月/日">
-                <label for="text" class="date-label">請選擇日期</label>
+                <input type="text" id="dateDisplay" readonly placeholder="請選擇日期">
+                <input type="date" id="date" style="display: none;">
             </div>
             <button onclick="getWeather()">查詢天氣</button>
         </div>
