@@ -1,7 +1,7 @@
 const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
 // 设置当前日期为默认值
-document.getElementById('myDate').valueAsDate = new Date();
+document.getElementById('date').valueAsDate = new Date();
 
 async function getWeather() {
     const city = document.getElementById('city').value;
