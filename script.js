@@ -1,27 +1,5 @@
 const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
-// 初始化日期輸入框
-function initDateInput() {
-    const dateInput = document.getElementById('date');
-    
-    // 設置日期輸入框的提示文字
-    dateInput.setAttribute('placeholder', '請選擇日期');
-    
-    // 監聽日期選擇事件
-    dateInput.addEventListener('change', function() {
-        if (this.value) {
-            this.removeAttribute('placeholder');
-        } else {
-            this.setAttribute('placeholder', '請選擇日期');
-        }
-    });
-}
-
-// 頁面載入時初始化
-document.addEventListener('DOMContentLoaded', function() {
-    initDateInput();
-});
-
 async function getWeather() {
     const city = document.getElementById('city').value;
     const date = document.getElementById('date').value;
@@ -78,4 +56,4 @@ async function getWeather() {
     } catch (error) {
         alert(error.message || '獲取天氣資訊時發生錯誤');
     }
-} 
+}
