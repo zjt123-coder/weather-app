@@ -67,7 +67,11 @@ input[type="text"]::placeholder {
     z-index: 2;
     cursor: pointer;
 }
-
+input[type="date"] {
+  -webkit-appearance: none; /* 移除iOS默认样式 */
+  appearance: none;
+  min-height: 1.2em; /* 确保有足够高度显示内容 */
+}
 /* 日期標籤樣式 */
 .date-placeholder {
     position: absolute;
