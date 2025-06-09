@@ -8,7 +8,7 @@ async function getWeather() {
     const weatherInfo = document.getElementById('weather-info');
 
     if (!city || !date) {
-        alert('請輸入城市名稱和日期');
+        alert('請輸入城市名稱（英文）和日期');
         return;
     }
 
