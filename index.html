@@ -11,7 +11,10 @@
         <h1>天氣查詢</h1>
         <div class="search-box">
             <input type="text" id="city" placeholder="請輸入城市名稱">
-            <input type="date" id="date" placeholder="請選擇日期">
+            <div class="date-input-wrapper">
+                <input type="date" id="date">
+                <label for="date" class="date-label">請選擇日期</label>
+            </div>
             <button onclick="getWeather()">查詢天氣</button>
         </div>
         <div class="weather-info" id="weatherInfo">
