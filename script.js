@@ -4,12 +4,8 @@ const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 document.addEventListener('DOMContentLoaded', function() {
     const dateDisplay = document.getElementById('dateDisplay');
     const dateInput = document.getElementById('date');
-
-    // 點擊顯示的輸入框時觸發隱藏的日期輸入框
-    dateDisplay.addEventListener('click', function() {
-        dateInput.click();
-    });
-
+    
+    
     // 當日期改變時更新顯示
     dateInput.addEventListener('change', function() {
         if (this.value) {
@@ -18,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             dateDisplay.value = '';
         }
+        // 隱藏日期輸入框
+        this.style.display = 'none';
     });
 });
 
