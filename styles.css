@@ -150,7 +150,9 @@ button:hover {
     .container {
         padding: 1rem;
     }
-    
+    input::placeholder {
+    color: transparent !important; /* 或者其他会隐藏文本的样式 */
+}
     input {
         font-size: 16px; /* 防止 iOS 自動縮放 */
         
