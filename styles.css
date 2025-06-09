@@ -40,6 +40,47 @@ input {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
+    width: 100%;
+}
+
+/* 普通輸入框的 placeholder 樣式 */
+input[type="text"]::placeholder {
+    color: #999;
+}
+
+/* 日期輸入框的樣式 */
+input[type="date"] {
+    position: relative;
+    color: #333;
+}
+
+/* 日期輸入框的偽類樣式 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* 日期輸入框的提示文字樣式 */
+input[type="date"]:invalid::-webkit-datetime-edit {
+    color: #999;
+}
+
+/* 當日期輸入框有值時的樣式 */
+input[type="date"]:valid::-webkit-datetime-edit {
+    color: #333;
+}
+
+/* 自定義日期輸入框的提示文字 */
+input[type="date"]::before {
+    content: attr(placeholder);
+    position: absolute;
+    color: #999;
+    pointer-events: none;
+}
+
+/* 當日期輸入框有值時隱藏提示文字 */
+input[type="date"]:valid::before {
+    display: none;
 }
 
 button {
@@ -81,4 +122,15 @@ button:hover {
 .weather-card p {
     color: #666;
     margin: 0.5rem 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    input {
+        font-size: 16px; /* 防止 iOS 自動縮放 */
+    }
 } 
