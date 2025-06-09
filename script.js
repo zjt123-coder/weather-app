@@ -1,23 +1,7 @@
 const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
-// 初始化日期選擇器
-document.addEventListener('DOMContentLoaded', function() {
-    const dateDisplay = document.getElementById('dateDisplay');
-    const dateInput = document.getElementById('date');
-    
-    
-    // 當日期改變時更新顯示
-    dateInput.addEventListener('change', function() {
-        if (this.value) {
-            const date = new Date(this.value);
-            dateDisplay.value = date.toLocaleDateString('zh-TW');
-        } else {
-            dateDisplay.value = '';
-        }
-        // 隱藏日期輸入框
-        this.style.display = 'none';
-    });
-});
+// 设置当前日期为默认值
+document.getElementById('myDate').valueAsDate = new Date();
 
 async function getWeather() {
     const city = document.getElementById('city').value;
