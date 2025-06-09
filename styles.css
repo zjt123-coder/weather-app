@@ -2,30 +2,59 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+}
+
+:root {
+    --primary-color: #0083b0;
+    --secondary-color: #00b4db;
+    --text-color: #333;
+    --bg-color: #fff;
+    --error-color: #ff4444;
+    --success-color: #00C851;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: 'Microsoft JhengHei', sans-serif;
     background: linear-gradient(135deg, #00b4db, #0083b0);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
     max-width: 500px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 h1 {
+    color: #2c3e50;
     text-align: center;
-    color: #333;
-    margin-bottom: 2rem;
+    margin-bottom: 30px;
+    font-size: 2em;
 }
 
 .search-box {
@@ -35,39 +64,221 @@ h1 {
     margin-bottom: 2rem;
 }
 
-input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-input[type="date"] {
-    display: block;
-    visibility: visible; 
+.input-group {
+    margin-bottom: 20px;
 }
 
-button {
-    padding: 0.8rem;
-    background: #0083b0;
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+input.error {
+    border-color: #e74c3c;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.search-btn {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-button:hover {
-    background: #006688;
+.search-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+.search-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .weather-info {
-    padding: 1rem;
-    border-radius: 5px;
-    background: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: #f8f9fa;
     display: none;
+    animation: fadeIn 0.5s ease;
 }
 
 .weather-info.show {
     display: block;
+}
+
+.weather-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.weather-info p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    .search-btn {
+        padding: 10px;
+    }
+
+    .weather-info {
+        padding: 15px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff;
+        --bg-color: #1a1a1a;
+    }
+
+    .container {
+        background: rgba(26, 26, 26, 0.95);
+    }
+
+    input {
+        background: #2d2d2d;
+        border-color: #404040;
+        color: #fff;
+    }
+
+    .weather-info {
+        background: #2d2d2d;
+    }
+
+    footer {
+        color: #999;
+    }
+}
+
+@media print {
+    body {
+        background: none;
+    }
+
+    .container {
+        box-shadow: none;
+        width: 100%;
+        max-width: none;
+    }
+
+    .search-box {
+        display: none;
+    }
+}
+
+.error {
+    border-color: var(--error-color) !important;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.loading {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.note {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(0, 131, 176, 0.1);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.note i {
+    font-size: 1.1rem;
+}
+
+/* 深色模式下的提示信息樣式 */
+@media (prefers-color-scheme: dark) {
+    .note {
+        background: rgba(0, 131, 176, 0.2);
+    }
 }
