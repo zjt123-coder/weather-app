@@ -1,5 +1,26 @@
 const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
+// 初始化日期選擇器
+document.addEventListener('DOMContentLoaded', function() {
+    const dateDisplay = document.getElementById('dateDisplay');
+    const dateInput = document.getElementById('date');
+
+    // 點擊顯示的輸入框時觸發隱藏的日期輸入框
+    dateDisplay.addEventListener('click', function() {
+        dateInput.click();
+    });
+
+    // 當日期改變時更新顯示
+    dateInput.addEventListener('change', function() {
+        if (this.value) {
+            const date = new Date(this.value);
+            dateDisplay.value = date.toLocaleDateString('zh-TW');
+        } else {
+            dateDisplay.value = '';
+        }
+    });
+});
+
 async function getWeather() {
     const city = document.getElementById('city').value;
     const date = document.getElementById('date').value;
@@ -56,4 +77,4 @@ async function getWeather() {
     } catch (error) {
         alert(error.message || '獲取天氣資訊時發生錯誤');
     }
-}
+} 
