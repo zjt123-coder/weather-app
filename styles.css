@@ -246,6 +246,9 @@ input.error {
     .container {
         padding: var(--space-lg);
     }
+    input {
+        width:100%;
+    }
 }
 
 @media (max-width: 480px) {
