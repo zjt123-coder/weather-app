@@ -41,6 +41,10 @@ input {
     border-radius: 5px;
     font-size: 1rem;
 }
+input[type="date"] {
+    display: block;
+    visibility: visible; 
+}
 
 button {
     padding: 0.8rem;
