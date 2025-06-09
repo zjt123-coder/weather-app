@@ -1,12 +1,11 @@
-const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
-// 设置当前日期为默认值
-document.getElementById('date').valueAsDate = new Date();
+// 請替換為您的 OpenWeatherMap API 密鑰
+const API_KEY = '7031fa38cf9a51b74cac2915b83e07d4';
 
 async function getWeather() {
     const city = document.getElementById('city').value;
     const date = document.getElementById('date').value;
-    const weatherInfo = document.getElementById('weatherInfo');
+    const weatherInfo = document.getElementById('weather-info');
 
     if (!city || !date) {
         alert('請輸入城市名稱和日期');
@@ -14,9 +13,8 @@ async function getWeather() {
     }
 
     try {
-        // 獲取城市的地理座標
-        const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
-        const geoResponse = await fetch(geoUrl);
+        // 獲取城市的地理坐標
+        const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`);
         const geoData = await geoResponse.json();
 
         if (!geoData.length) {
@@ -26,37 +24,20 @@ async function getWeather() {
         const { lat, lon } = geoData[0];
 
         // 獲取天氣數據
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=zh_tw`;
-        const weatherResponse = await fetch(weatherUrl);
+        const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=zh_tw`);
         const weatherData = await weatherResponse.json();
 
-        // 找到最接近選擇日期的天氣數據
-        const targetDate = new Date(date);
-        const weatherList = weatherData.list;
-        const closestWeather = weatherList.reduce((closest, current) => {
-            const currentDate = new Date(current.dt * 1000);
-            const closestDate = new Date(closest.dt * 1000);
-            return Math.abs(currentDate - targetDate) < Math.abs(closestDate - targetDate) ? current : closest;
-        });
-
-        // 顯示天氣資訊
-        const weather = closestWeather.weather[0];
-        const main = closestWeather.main;
-        
+        // 顯示天氣信息
         weatherInfo.innerHTML = `
-            <div class="weather-card">
-                <h2>${city}</h2>
-                <p>日期：${new Date(closestWeather.dt * 1000).toLocaleDateString()}</p>
-                <p>天氣：${weather.description}</p>
-                <p>溫度：${Math.round(main.temp)}°C</p>
-                <p>體感溫度：${Math.round(main.feels_like)}°C</p>
-                <p>濕度：${main.humidity}%</p>
-                <p>風速：${closestWeather.wind.speed} m/s</p>
-            </div>
+            <h2>${city}的天氣</h2>
+            <p>日期：${date}</p>
+            <p>溫度：${Math.round(weatherData.main.temp)}°C</p>
+            <p>天氣：${weatherData.weather[0].description}</p>
+            <p>濕度：${weatherData.main.humidity}%</p>
+            <p>風速：${weatherData.wind.speed} m/s</p>
         `;
-        weatherInfo.classList.add('active');
-
+        weatherInfo.classList.add('show');
     } catch (error) {
-        alert(error.message || '獲取天氣資訊時發生錯誤');
+        alert('獲取天氣信息時出錯：' + error.message);
     }
-} 
+}
