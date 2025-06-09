@@ -42,7 +42,6 @@ input {
     font-size: 1rem;
     width: 100%;
 }
-.date-input-wrapper{width:100%;}
 
 /* 普通輸入框的 placeholder 樣式 */
 input[type="text"]::placeholder {
@@ -56,7 +55,7 @@ input[type="text"]::placeholder {
 }
 
 /* 日期輸入框樣式 */
-input[type="date"] {
+#dateDisplay {
     position: relative;
     color: #333;
     background: transparent;
@@ -76,14 +75,14 @@ input[type="date"] {
 }
 
 /* 當日期輸入框有值時隱藏標籤 */
-input[type="date"]:valid + .date-label,
-input[type="date"]:focus + .date-label {
+#dateDisplay:valid + .date-label,
+#dateDisplay:focus + .date-label {
     opacity: 0;
     transform: translateY(-50%) translateX(-10px);
 }
 
 /* 日期選擇器圖標樣式 */
-input[type="date"]::-webkit-calendar-picker-indicator {
+#dateDisplay::-webkit-calendar-picker-indicator {
     cursor: pointer;
     padding: 5px;
     position: relative;
@@ -139,25 +138,8 @@ button:hover {
     
     input {
         font-size: 16px; /* 防止 iOS 自動縮放 */
-        
     }
-    .date-input-wrapper{width:100%;}
-    .date-label {
-        font-size: 16px;
-    }
-} 
-@media (max-width: 600px) {
-    .container {
-        padding: 1rem;
-    }
-    input::placeholder {
-    color: transparent !important; /* 或者其他会隐藏文本的样式 */
-}
-    input {
-        font-size: 16px; /* 防止 iOS 自動縮放 */
-        
-    }
-    .date-input-wrapper{width:100%;}
+    
     .date-label {
         font-size: 16px;
     }
